@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>劉玟郁's Blog</title>
     
     <style>
-        /* CSS Reset & CSS 變數 (Crucial) */
+        /* CSS Reset & CSS 變數 */
         :root {
-            /* 顏色變數 */
-            --color-primary: #FFFFFF;        /* 主色: (文字) */
-            --color-secondary: #AAAAAA;      /* 次要色:  (描述文字/邊框) */
-            --color-background: #3f3f3f;     /* 背景色:  */
-            --color-accent: #ffe11b;         /* 點綴色:  (CTA 按鈕) */
-            --color-dark: #323232;           /* 最深色: 導航背景/頁腳 */
+            --color-primary: #FFFFFF;
+            --color-secondary: #AAAAAA;
+            --color-background: #3f3f3f;
+            --color-accent: #ffe11b;
+            --color-dark: #323232;
 
-            /* 字體與間距變數 */
             --font-family-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             --space-xs: 8px;
             --space-sm: 16px;
@@ -43,16 +41,14 @@
             line-height: 1.6;
         }
 
-        /* 內容容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--space-sm);
         }
 
-        /* 語義化標籤基礎樣式 */
         main {
-            padding-top: var(--header-height); /* 留出固定導航欄空間 */
+            padding-top: var(--header-height);
         }
 
         section {
@@ -65,7 +61,7 @@
             font-weight: 700;
         }
 
-        /* 導航欄樣式 (使用 Flexbox) */
+        /* 導航欄 */
         .header {
             position: fixed;
             top: 0;
@@ -92,7 +88,7 @@
 
         .nav__menu {
             list-style: none;
-            display: none; /* Mobile 預設隱藏 */
+            display: none;
             flex-direction: column;
             position: absolute;
             top: var(--header-height);
@@ -114,7 +110,6 @@
             padding: var(--space-sm) var(--space-md);
             color: var(--color-primary);
             text-decoration: none;
-            transition: color 0.2s;
         }
 
         .nav__item a:hover {
@@ -128,82 +123,46 @@
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 1001;
-            padding: var(--space-xs);
         }
 
-        /* 通用按鈕樣式 */
+        /* 按鈕 */
         .btn {
             display: inline-block;
             padding: var(--space-sm) var(--space-md);
             text-decoration: none;
             border-radius: 4px;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s;
             font-weight: 600;
-            border: 2px solid transparent; /* 保持一致的邊框空間 */
+            border: 2px solid transparent;
         }
 
         .btn--primary {
             background-color: var(--color-accent);
-            color: var(--color-dark); /* 確保深色模式下的對比 */
+            color: var(--color-dark);
         }
 
         .btn--primary:hover {
-            background-color: #009DA3;
+            background-color: #ffd700;
         }
 
-        .btn--secondary {
-            background-color: transparent;
-            color: var(--color-primary);
-            border-color: var(--color-primary);
-        }
-
-        .btn--secondary:hover {
-            background-color: var(--color-primary);
-            color: var(--color-dark);
-        }
-        
-        /* 區塊 1： Hero Section 樣式 */
+        /* 區塊樣式 */
         .hero {
             text-align: center;
-            padding: var(--space-xl) 0 calc(var(--space-xl) * 1.5);
-            min-height: calc(100vh - var(--header-height));
+            padding: var(--space-xl) 0;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .hero__content {
-            max-width: 800px;
-        }
-
-        .hero__title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem); /* RWD 字體縮放 */
-            margin-bottom: var(--space-md);
-        }
-
-        .hero__subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--color-secondary);
-            margin-bottom: var(--space-lg);
-        }
-
-        .hero__actions .btn {
-            margin: var(--space-sm) var(--space-xs);
-        }
-
-        /* 區塊 2： 特色卡片 (使用 CSS Grid) */
         .features__grid {
             display: grid;
-            grid-template-columns: 1fr; /* Mobile-First: 單欄 */
+            grid-template-columns: 1fr;
             gap: var(--space-md);
-            padding: var(--space-md) 0;
         }
 
         @media (min-width: 768px) {
-            .features__grid {
-                grid-template-columns: repeat(3, 1fr); /* Tablet/Desktop: 三欄 */
-                gap: var(--space-lg);
-            }
+            .features__grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .feature-card {
@@ -211,102 +170,86 @@
             padding: var(--space-md);
             border-radius: 8px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid transparent;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border-color: var(--color-accent);
-        }
-
-        .feature-card h3 {
-            color: var(--color-accent);
-            margin-top: var(--space-sm);
-        }
-        
-        /* 區塊 3： 響應式圖片畫廊 (使用 CSS Grid) */
+        /* 作品集區塊核心樣式 */
         .gallery__grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: var(--space-md);
         }
         
-        /* 專案卡片現在是獨立的容器 (article) */
         .gallery__item {
             display: flex;
             flex-direction: column;
-            align-items: center;
             background-color: var(--color-dark);
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            padding-bottom: var(--space-sm);
+            transition: transform 0.3s;
         }
         
         .gallery__item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            background-color: #2a2a2a;
         }
         
-        /* 專案圖片/預覽圖容器 (16:9 比例) */
-        .project-preview {
+        /* 比例容器 (用於圖片、影片、遊戲) */
+        .project-media-wrapper {
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 比例 */
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             position: relative;
             background-size: cover;
             background-position: center;
-            margin-bottom: var(--space-sm);
+            background-color: #000;
         }
 
-        /* 專案操作按鈕群組 (Flexbox 佈局) */
-        .project-actions {
-            display: flex;
-            justify-content: space-around; /* 讓按鈕之間有空間 */
-            width: 90%;
-            margin-top: var(--space-sm);
-        }
-        
-        .project-actions .btn {
-            flex-grow: 1; /* 讓按鈕平均佔據空間 */
-            margin: 0 var(--space-xs); /* 按鈕間隔 */
-            padding: var(--space-xs);
-            text-align: center;
-            font-size: 0.9rem;
+        .project-media-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .gallery__content {
-            padding: 0 var(--space-sm) var(--space-xs);
+            padding: var(--space-sm);
             text-align: center;
+            flex-grow: 1;
         }
-        
-        /* 移除原有的播放按鈕樣式，因為我們現在使用按鈕連結 */
-        .project-preview::before {
-            content: none; 
+
+        .project-actions {
+            padding: var(--space-sm);
+            display: flex;
+            justify-content: center;
         }
-        
-        /* 頁腳 */
+
         .footer {
             background-color: var(--color-dark);
             padding: var(--space-md) 0;
             text-align: center;
             color: var(--color-secondary);
-            border-top: 1px solid #333;
         }
-        
-        /* 輔助/無障礙樣式 */
-        .visually-hidden {
+        /* 圖片點擊提示遮罩 */
+        .play-overlay {
             position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* 半透明黑 */
+            color: var(--color-accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0; /* 預設隱藏 */
+            transition: opacity 0.3s ease;
+        }
+
+        /* 滑鼠懸停時顯示提示文字 */
+        .project-media-wrapper:hover .play-overlay {
+            opacity: 1;
         }
     </style>
 </head>
@@ -315,11 +258,8 @@
     <header class="header">
         <div class="container navbar">
             <a href="#" class="nav__logo">BLOG</a>
-            
-            <button class="menu-toggle" id="menuToggle" aria-controls="mainMenu" aria-expanded="false" aria-label="切換導航菜單">
-                &#9776; </button>
-            
-            <nav id="mainMenu" class="nav__menu" aria-label="主要導航">
+            <button class="menu-toggle" id="menuToggle" aria-label="切換導航菜單">☰</button>
+            <nav id="mainMenu" class="nav__menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#hero">首頁</a></li>
                     <li class="nav__item"><a href="#features">個人簡介</a></li>
@@ -333,11 +273,9 @@
     <main>
         <section id="hero" class="hero">
             <div class="container hero__content">
-                <h1 class="hero__title">
-                    嗨，我是劉玟郁👋
-                </h1>
+                <h1 class="hero__title">嗨，我是劉玟郁👋</h1>
                 <p class="hero__subtitle">
-                    歡迎來到我的個人網站！我專注於將創意轉化為實用的數位解決方案。
+                    歡迎來到我的個人網站！我專注於將創意轉化為實用的數位解決方案。<br>
                     在這裡，你可以找到我的個人簡介、精選作品。
                 </p>
                 <div class="hero__actions">
@@ -350,74 +288,106 @@
             <div class="container">
                 <h2 class="text-center" style="text-align: center; margin-bottom: var(--space-xl);">我的專長</h2>
                 <div class="features__grid">
-                    
                     <article class="feature-card">
                         <span style="font-size: 2rem;">🚀</span>
                         <h3>Python</h3>
-                        <p style="color: var(--color-secondary);">專注於python使用。</p>
+                        <p style="color: var(--color-secondary);">專注於 Python 程式開發與應用。</p>
                     </article>
-                    
                     <article class="feature-card">
                         <span style="font-size: 2rem;">♿</span>
-                        <h3>無障礙設計 (A11y)</h3>
-                        <p style="color: var(--color-secondary);">嚴格遵守 WCAG 標準，確保所有使用者，無論能力如何，都能完整存取網頁內容。</p>
+                        <h3>無障礙設計</h3>
+                        <p style="color: var(--color-secondary);">確保數位內容對所有使用者皆友善且易於存取。</p>
                     </article>
-                    
                     <article class="feature-card">
                         <span style="font-size: 2rem;">📐</span>
                         <h3>原生語法堅持</h3>
-                        <p style="color: var(--color-secondary);">偏好使用 Vanilla JS/CSS 搭配 Grid/Flexbox，減少依賴，提高程式碼可移植性與維護性。</p>
+                        <p style="color: var(--color-secondary);">使用 Vanilla JS/CSS 構建高效能、輕量化的網頁元件。</p>
                     </article>
-                    
                 </div>
             </div>
         </section>
         
         <section id="portfolio" style="background-color: var(--color-dark);">
             <div class="container">
-                <h2 class="text-center" style="text-align: center; margin-bottom: var(--space-xl); color: var(--color-primary);">作品集</h2>
+                <h2 class="text-center" style="text-align: center; margin-bottom: var(--space-xl); color: var(--color-primary);">作品集展示</h2>
                 <div class="gallery__grid">
                     
+                    
+
                     <article class="gallery__item">
-                        <div class="project-preview" style="background-image: url('https://lh3.googleusercontent.com/drive-storage/AJQWtBMCijQNBp3dj23GuX3XHlsPJScGpq141xVV5qIVth-_QcjkcwENxRIrCktCVsRQ4jUp81AAGjI61OxDunzVkTHrBaD9iEgj0kJayElqOxtLOzs=w1898-h832?auditContext=forDisplay');">
+                        <div class="project-media-wrapper">
+                            <iframe src="https://www.youtube.com/embed/apYBog6R7Z4" title="期中影片展示" allowfullscreen></iframe>
                         </div>
                         <div class="gallery__content">
-                            <h3 style="margin-top: 0;">AI生成字體</h3>
-                            <p style="color: var(--color-secondary);">使用文案生成不同設計的主體字體。</p>
-                        </div>
-                        
-                        <div class="project-actions">
+                            <h3>期中影片</h3>
                             
-                            <a href="#" 
-                               class="btn btn--secondary" 
-                               style="display: none;"
-                               aria-hidden="true"
-                               tabindex="-1">
-                                </a>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://youtu.be/apYBog6R7Z4" class="btn btn--primary" target="_blank">前往 YouTube</a>
+                        </div>
+                    </article>
+
+                    
+
+                    <article class="gallery__item">
+                        <a href="https://youtu.be/qwdjqnx-ipo?si=ANuEYF8CzAyt48qW" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style="width: 100%; text-decoration: none; color: inherit;">
+                            
+                            <div class="project-media-wrapper" 
+                                style="background-image: url('https://pbs.twimg.com/media/G8sc0ZWaMAAUim9?format=jpg&name=medium');">
+                                <div class="play-overlay">點擊進入影片</div>
+                            </div>
+
+                            <div class="gallery__content">
+                                <h3>期末影片</h3>
+                                <p style="color: var(--color-secondary);">
+                                    點擊上方圖片或下方按鈕，即可開啟新分頁進入Youtube。
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="project-actions">
+                            <a href="https://youtu.be/qwdjqnx-ipo?si=ANuEYF8CzAyt48qW" 
+                            class="btn btn--primary" 
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                            開始觀看
+                            </a>
                         </div>
                     </article>
 
                     <article class="gallery__item">
-                        <div class="project-preview" style="background-image: url('https://hips.hearstapps.com/clv.h-cdn.co/assets/16/18/gettyimages-529202089.jpg?crop=0.6668237511781339xw:1xh;center,top');">
-                        </div>
-                        <div class="gallery__content">
-                            <h3 style="margin-top: 0;">期中影片</h3>
-                            <p style="color: var(--color-secondary);">使用AI以及影片軟體製作。</p>
-                        </div>
-                        
-                        <div class="project-actions">
+                        <a href="https://gemini.google.com/share/ad646263b8d7" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style="width: 100%; text-decoration: none; color: inherit;">
                             
-                            <a href="https://youtu.be/apYBog6R7Z4" 
-                               class="btn btn--primary" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               aria-label="觀看專案二的設計流程影片">
-                                觀看影片
+                            <div class="project-media-wrapper" 
+                                style="background-image: url('https://pbs.twimg.com/media/G8sb3rVbYAAIqRw?format=png&name=900x900');">
+                                <div class="play-overlay">點擊進入遊戲</div>
+                            </div>
+
+                            <div class="gallery__content">
+                                <h3>互動網頁遊戲</h3>
+                                <p style="color: var(--color-secondary);">
+                                    點擊上方圖片或下方按鈕，即可開啟新分頁進入遊戲世界。
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="project-actions">
+                            <a href="https://gemini.google.com/share/ad646263b8d7" 
+                            class="btn btn--primary" 
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                            開始遊玩
                             </a>
                         </div>
                     </article>
                     
-                    </div>
+                </div>
             </div>
         </section>
         
@@ -425,66 +395,37 @@
             <div class="container">
                 <h2 style="font-size: 2.5rem;">感謝觀看</h2>
                 <p style="color: var(--color-secondary); margin-bottom: var(--space-lg);">
-                    無論是架構諮詢還是前端開發，期待與您共同創造卓越的數位產品。
+                    期待與您交流，共同創造卓越的數位產品。
                 </p>
-                <a href="mailto:your.email@example.com" class="btn btn--primary btn--large">聯絡我 (s111116037@stu.ntue.edu.tw)</a>
+                <a href="mailto:s111116037@stu.ntue.edu.tw" class="btn btn--primary">聯絡我 (Email)</a>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 ARCHITECT.IO. 基於原生 Web 標準設計與開發。</p>
-            <p style="font-size: 0.8rem; margin-top: var(--space-xs);">高性能 | 無障礙 | 極簡</p>
+            <p>© 2025 ARCHITECT.IO. 基於原生 Web 標準設計與開發。</p>
+            <p style="font-size: 0.8rem;">高性能 | 無障礙 | 極簡</p>
         </div>
     </footer>
     
     <script>
-        // 確保 DOM 載入完成
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menuToggle');
             const mainMenu = document.getElementById('mainMenu');
             const navLinks = mainMenu.querySelectorAll('a');
 
-            /**
-             * @function toggleMenu
-             * @description 切換漢堡選單的開啟/關閉狀態，並更新 ARIA 屬性。
-             */
             const toggleMenu = () => {
-                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-                
-                // 狀態切換
-                mainMenu.classList.toggle('is-active');
-                
-                // A11y: 更新按鈕的狀態
-                menuToggle.setAttribute('aria-expanded', !isExpanded);
-                
-                // A11y: 如果菜單是開啟的，應將焦點移動到第一個連結（可選的增強功能）
-                if (!isExpanded) {
-                    navLinks[0].focus();
-                }
+                const isExpanded = mainMenu.classList.toggle('is-active');
+                menuToggle.innerText = isExpanded ? '✕' : '☰';
             };
 
-            // 1. 導航欄切換事件
             menuToggle.addEventListener('click', toggleMenu);
 
-            // 2. 點擊菜單連結後關閉菜單 (Mobile 體驗優化)
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    if (mainMenu.classList.contains('is-active')) {
-                        toggleMenu();
-                    }
+                    if (mainMenu.classList.contains('is-active')) toggleMenu();
                 });
-            });
-
-            // 3. 調整視窗大小時關閉菜單 (防止 RWD 樣式衝突)
-            window.addEventListener('resize', () => {
-                // 如果視窗寬度足夠大 (假設大於 768px)，確保菜單是視覺隱藏但可操作的
-                if (window.innerWidth >= 768 && mainMenu.classList.contains('is-active')) {
-                     // 僅移除 'is-active' 類別，讓 CSS 處理桌面佈局
-                     mainMenu.classList.remove('is-active');
-                     menuToggle.setAttribute('aria-expanded', 'false');
-                }
             });
         });
     </script>
