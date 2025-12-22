@@ -175,7 +175,7 @@
         /* 作品集區塊核心樣式 */
         .gallery__grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
             gap: var(--space-md);
         }
         
@@ -195,11 +195,16 @@
         /* 比例容器 (用於圖片、影片、遊戲) */
         .project-media-wrapper {
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; /* 16:9 比例 */
             position: relative;
             background-size: cover;
             background-position: center;
             background-color: #000;
+        }
+
+        /* 遊戲介面比例加大 */
+        .project-media-wrapper.media--game {
+            padding-bottom: 85%; 
         }
 
         .project-media-wrapper iframe {
@@ -229,25 +234,24 @@
             text-align: center;
             color: var(--color-secondary);
         }
-        /* 圖片點擊提示遮罩 */
+
         .play-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* 半透明黑 */
+            background: rgba(0, 0, 0, 0.4); 
             color: var(--color-accent);
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
             font-size: 1.2rem;
-            opacity: 0; /* 預設隱藏 */
+            opacity: 0; 
             transition: opacity 0.3s ease;
         }
 
-        /* 滑鼠懸停時顯示提示文字 */
         .project-media-wrapper:hover .play-overlay {
             opacity: 1;
         }
@@ -257,7 +261,7 @@
 
     <header class="header">
         <div class="container navbar">
-            <a href="#" class="nav__logo">BLOG</a>
+            <a href="#" class="nav__logo">劉玟郁's BLOG</a>
             <button class="menu-toggle" id="menuToggle" aria-label="切換導航菜單">☰</button>
             <nav id="mainMenu" class="nav__menu">
                 <ul class="nav__list">
@@ -312,8 +316,6 @@
                 <h2 class="text-center" style="text-align: center; margin-bottom: var(--space-xl); color: var(--color-primary);">作品集展示</h2>
                 <div class="gallery__grid">
                     
-                    
-
                     <article class="gallery__item">
                         <div class="project-media-wrapper">
                             <iframe src="https://www.youtube.com/embed/apYBog6R7Z4" title="期中影片展示" allowfullscreen></iframe>
@@ -327,65 +329,44 @@
                         </div>
                     </article>
 
-                    
+                    <article class="gallery__item">
+                        <div class="project-media-wrapper">
+                            <iframe src="https://www.youtube.com/embed/qwdjqnx-ipo" title="期中影片展示" allowfullscreen></iframe>
+                        </div>
+                        <div class="gallery__content">
+                            <h3>期中影片</h3>
+                            
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://www.youtube.com/qwdjqnx-ipo" class="btn btn--primary" target="_blank">前往 YouTube</a>
+                        </div>
+                    </article>
+
 
                     <article class="gallery__item">
-                        <a href="https://youtu.be/qwdjqnx-ipo?si=ANuEYF8CzAyt48qW" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        style="width: 100%; text-decoration: none; color: inherit;">
-                            
-                            <div class="project-media-wrapper" 
-                                style="background-image: url('https://pbs.twimg.com/media/G8sc0ZWaMAAUim9?format=jpg&name=medium');">
-                                <div class="play-overlay">點擊進入影片</div>
-                            </div>
+                        <div class="project-media-wrapper media--game">
+                            <iframe 
+                                src="https://s111116037-art.github.io/game/"
+                                title="互動網頁遊戲"
+                                loading="lazy"
+                                allow="fullscreen">
+                            </iframe>
+                        </div>
 
-                            <div class="gallery__content">
-                                <h3>期末影片</h3>
-                                <p style="color: var(--color-secondary);">
-                                    點擊上方圖片或下方按鈕，即可開啟新分頁進入Youtube。
-                                </p>
-                            </div>
-                        </a>
+                        <div class="gallery__content">
+                            <h3>互動網頁遊戲</h3>
+                        </div>
 
                         <div class="project-actions">
-                            <a href="https://youtu.be/qwdjqnx-ipo?si=ANuEYF8CzAyt48qW" 
+                            <a href="https://s111116037-art.github.io/game/" 
                             class="btn btn--primary" 
                             target="_blank" 
                             rel="noopener noreferrer">
-                            開始觀看
+                            全螢幕遊玩
                             </a>
                         </div>
                     </article>
 
-                    <article class="gallery__item">
-                        <a href="https://gemini.google.com/share/ad646263b8d7" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        style="width: 100%; text-decoration: none; color: inherit;">
-                            
-                            <div class="project-media-wrapper" 
-                                style="background-image: url('https://pbs.twimg.com/media/G8sb3rVbYAAIqRw?format=png&name=900x900');">
-                                <div class="play-overlay">點擊進入遊戲</div>
-                            </div>
-
-                            <div class="gallery__content">
-                                <h3>互動網頁遊戲</h3>
-                                <p style="color: var(--color-secondary);">
-                                    點擊上方圖片或下方按鈕，即可開啟新分頁進入遊戲世界。
-                                </p>
-                            </div>
-                        </a>
-
-                        <div class="project-actions">
-                            <a href="https://gemini.google.com/share/ad646263b8d7" 
-                            class="btn btn--primary" 
-                            target="_blank" 
-                            rel="noopener noreferrer">
-                            開始遊玩
-                            </a>
-                        </div>
-                    </article>
                     
                 </div>
             </div>
@@ -431,4 +412,3 @@
     </script>
 </body>
 </html>
-
